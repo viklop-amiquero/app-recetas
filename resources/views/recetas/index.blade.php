@@ -18,7 +18,7 @@
                     <td>Pizza</td>
                     <td>Pizzas</td>
                     <td>
-
+                        {{-- hola mundo --}}
                     </td>
                 </tr>
             </tbody>
