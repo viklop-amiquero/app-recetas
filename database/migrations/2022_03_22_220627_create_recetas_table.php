@@ -11,18 +11,10 @@ return new class extends Migration
      *
      * @return void
      */
-
-    // up cuando se crea la migración
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('recetas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('url')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -32,10 +24,8 @@ return new class extends Migration
      *
      * @return void
      */
-
-    // Cuando se elimina la migración rollback
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('recetas');
     }
 };

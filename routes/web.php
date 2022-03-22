@@ -18,14 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/recetas', RecetaController::class);
+// Route::get('/recetas', RecetaController::class);
 
 // Para un solo método
 // Route::get('/nosotros', RecetaController::class);
 
 // Para un método en específico
-// Route::get('/nosotros', [RecetaController::class, 'hola']);
+Route::get('/recetas', [RecetaController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
