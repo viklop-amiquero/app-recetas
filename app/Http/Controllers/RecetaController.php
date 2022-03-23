@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Receta;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RecetaController extends Controller
 {
@@ -34,7 +35,9 @@ class RecetaController extends Controller
     public function create()
     {
         //
-        return view('recetas.create');
+        // DB::table('categoria_receta')->get()->pluck('nombre', 'id')->dd();
+        $categorias = DB::table('categoria_receta')->get()->pluck('nombre', 'id');
+        return view('recetas.create', compact('categorias'));
     }
 
     /**
@@ -46,15 +49,30 @@ class RecetaController extends Controller
     public function store(Request $request)
     {
 
-        //
+        // dd($request['imagen']->store('upload-recetas', 'public'));
+
+        // Validación
         $data = request()->validate([
             'titulo' => 'required|min:6',
+            'categoria' => 'required',
+            'preparacion' => 'required',
+            'ingredientes' => 'required',
+            // 'imagen' => 'required|image|size:1000',
+            'imagen' => 'required|image',
 
         ]);
 
+        // Ruta de la imagen
+        $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
 
+        // Almacenar en la Bd sin modelo
         DB::table('recetas')->insert([
             'titulo' => $data['titulo'],
+            'ingredientes' => $data['ingredientes'],
+            'preparacion' => $data['preparacion'],
+            'imagen' => $ruta_imagen,
+            'user_id' => Auth::user()->id,
+            'categoria_id' => $data['categoria']
         ]);
         // dd($request->all());
 
