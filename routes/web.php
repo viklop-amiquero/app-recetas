@@ -24,7 +24,10 @@ Route::get('/', function () {
 // Route::get('/nosotros', RecetaController::class);
 
 // Para un método en específico
-Route::get('/recetas', [RecetaController::class, 'index']);
+Route::get('/recetas', [RecetaController::class, 'index'])->name('recetas.index');
+Route::get('/recetas/create', [RecetaController::class, 'create'])->name('recetas.create');
+Route::post('/recetas', [RecetaController::class, 'store'])->name('recetas.store');
+
 
 Auth::routes();
 
