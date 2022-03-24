@@ -20,13 +20,18 @@
             <p>
                 <span class="font-weight-bold text-primary">Autor:</span>
                 {{-- TODO: Mostrar el usuario --}}
-                {{$receta->user_id}}
+                {{$receta->autor->name}}
             </p>
 
             <p>
                 <span class="font-weight-bold text-primary">Fecha:</span>
                 {{-- TODO: Mostrar el usuario --}}
-                {{$receta->created_at}}
+
+                @php
+                    $fecha = $receta->created_at;    
+
+                @endphp
+                <fecha-receta fecha= "{{$fecha}}"></fecha-receta>
             </p>
 
             <div class="ingredientes">
