@@ -11302,3 +11302,7 @@ trix-editor {
 .bg-primary .navbar-brand:hover {
   color: white;
 }
+
+.imagen-receta {
+  max-width: 700px;
+}
