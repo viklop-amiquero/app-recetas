@@ -31,9 +31,11 @@
                         <td>{{$receta->categoria->nombre}}</td>
                         <td>
                             {{-- hola mundo --}}
-                            <a href="" class="btn btn-danger mr-1">Eliminar</a>
-                            <a href="" class="btn btn-dark mr-1">Editarr</a>
-                            <a href="" class="btn btn-success mr-1">Ver</a>
+                            <eliminar-receta
+                                receta-id={{$receta->id}}
+                            ></eliminar-receta>
+                            <a href="{{route('recetas.edit', ['receta' => $receta->id])}}" class="btn btn-dark mr-1 d-block mb-2" >Editarr</a>
+                            <a href="{{route('recetas.show', ['receta' => $receta->id])}}" class="btn btn-success mr-1 d-block mb-2">Ver</a>
 
                         </td>
                     </tr>    

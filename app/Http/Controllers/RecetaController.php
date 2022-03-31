@@ -14,7 +14,7 @@ class RecetaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
     }
 
     /**
@@ -120,6 +120,9 @@ class RecetaController extends Controller
     public function edit(Receta $receta)
     {
         //
+        $categorias = CategoriaReceta::all(['id', 'nombre']);
+
+        return view('recetas.edit', compact('categorias', 'receta'));
     }
 
     /**
@@ -131,7 +134,41 @@ class RecetaController extends Controller
      */
     public function update(Request $request, Receta $receta)
     {
-        //
+
+        // Revisar el policy
+        $this->authorize('update', $receta);
+
+        // Validación
+        $data = request()->validate([
+            'titulo' => 'required|min:6',
+            'categoria' => 'required',
+            'preparacion' => 'required',
+            'ingredientes' => 'required',
+            // 'imagen' => 'required|image|size:1000',
+        ]);
+
+        // Asignar valores
+        $receta->titulo = $data['titulo'];
+        $receta->ingredientes = $data['ingredientes'];
+        $receta->preparacion = $data['preparacion'];
+        $receta->categoria_id = $data['categoria'];
+
+        // Si el usuario sube una nueva imagen
+        if (request('imagen')) {
+            // Ruta de la imagen
+            $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
+
+            $receta->imagen = $ruta_imagen;
+        }
+
+
+
+        $receta->save();
+
+        // return $receta;
+
+        // Una vez guardado vamos a redireccionar
+        return redirect()->action([RecetaController::class, 'index']);
     }
 
     /**
@@ -142,6 +179,13 @@ class RecetaController extends Controller
      */
     public function destroy(Receta $receta)
     {
-        //
+        // Ejecutar el policy
+        $this->authorize('delete', $receta);
+
+        // Eliminar la receta;
+
+        $receta->delete();
+
+        return redirect()->action([RecetaController::class, 'index']);
     }
 }
