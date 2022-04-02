@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('botones')
-
-    <a href="{{route('recetas.create')}}" class="btn btn-primary mr-2 text-white">
-        Crear Receta
-    </a>
+    {{-- {{Auth::user()}} --}} 
+    @include('ui.navegacion')
 
 @endsection
 
@@ -12,7 +10,7 @@
 
     <h2 class="text-center mb-5">Administra tus recetas</h2>
 
-    {{-- {{$recetas}} --}}
+    {{-- {{$recetas->autor}} --}}
     <div class="col-md-10 mx-auto bg-white p-3">
         <table class="table">
             <thead class="bg-primary text-light">
@@ -40,10 +38,13 @@
                         </td>
                     </tr>    
                 @endforeach
-                
             </tbody>
-
         </table>
+
+        <div class="col-12 mt-4 justify-content-center d-flex">
+            {{ $recetas->links() }}
+        </div>
+
     </div>
 {{-- <example-component/> --}}
 
