@@ -3,6 +3,9 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// import $ from "jquery";
+//webpack
+var $ = require("jquery");
 
 import VueSweetalert2 from "vue-sweetalert2";
 
@@ -36,6 +39,7 @@ Vue.component(
     "eliminar-receta",
     require("./components/EliminarReceta.vue").default
 );
+Vue.component("like-button", require("./components/LikeButton.vue").default);
 
 console.log(Vue.prototype);
 
@@ -47,4 +51,8 @@ console.log(Vue.prototype);
 
 const app = new Vue({
     el: "#app",
+});
+
+$(".like-btn").on("click", function () {
+    $(this).toggleClass("like-active");
 });

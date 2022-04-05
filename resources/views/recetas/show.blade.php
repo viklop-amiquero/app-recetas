@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     {{-- <h1>{{$receta}}</h1> --}}
     <article class="contenido-receta">
         
@@ -43,6 +44,13 @@
                 <h2 class="my-3 text-primary">Preparación</h2>
                 {!!$receta->preparacion!!}
             </div>
+
+            {{-- {{$likes}} --}}
+            <like-button
+                receta-id = '{{$receta->id}}'
+                like = '{{$like}}'
+                likes = '{{$likes}}'
+            ></like-button>
 
         </div>
     </article>
