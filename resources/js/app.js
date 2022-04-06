@@ -7,9 +7,12 @@
 //webpack
 var $ = require("jquery");
 
+import "owl.carousel";
+
 import VueSweetalert2 from "vue-sweetalert2";
 
 import "sweetalert2/dist/sweetalert2.min.css";
+import jquery from "jquery";
 
 require("./bootstrap");
 
@@ -55,4 +58,26 @@ const app = new Vue({
 
 $(".like-btn").on("click", function () {
     $(this).toggleClass("like-active");
+});
+
+// Carousel con owl
+jquery(document).ready(function () {
+    // alert("Hola Daniela");
+    jquery(".owl-carousel").owlCarousel({
+        margin: 10,
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            600: {
+                items: 2,
+            },
+            1000: {
+                items: 3,
+            },
+        },
+    });
 });

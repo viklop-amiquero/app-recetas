@@ -11298,6 +11298,9 @@ trix-editor {
   color: white;
   font-family: "Fredoka One", cursive;
   font-size: 2rem;
+  color: #FFF !important;
+  font-size: 2.4rem;
+  text-decoration: none;
 }
 .bg-primary .navbar-brand:hover {
   color: white;
@@ -11309,6 +11312,71 @@ trix-editor {
 
 .icono {
   width: 50px;
+}
+
+.barra {
+  background-color: #ed4646 !important;
+}
+
+.fecha {
+  color: #ed4646 !important;
+}
+
+.receta-meta p {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nva-link {
+  color: #fff;
+  font-size: 1.4rem;
+}
+.navbar-light .navbar-nav .nva-link:focus, .navbar-light .navbar-nav .nva-link:hover {
+  color: #fff;
+}
+
+.titulo-categoria {
+  font-family: "Cabin", sans-serif;
+  color: #333;
+  font-size: 1.8rem;
+  border-bottom: 3px solid #ed4646 !important;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  padding-right: 2rem;
+}
+
+.btn-receta, .btn-receta:hover {
+  background-color: #ed4646 !important;
+  border: none;
+}
+
+.owl-carousel .owl-stage {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex: 1 0 auto;
+  height: 100%;
+}
+
+.card-body {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.hero-categorias {
+  background-image: repeating-conic-gradient(red 10%, yellow 20%);
+  height: 30rem;
+  background-size: cover;
+  background-position: top center;
+}
+.hero-categorias .texto-buscar {
+  font-size: 1.4rem;
+  color: #fff;
 }
 
 .like-btn,

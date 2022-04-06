@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\likesController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecetaController;
+use App\Models\CategoriaReceta;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +19,7 @@ use App\Http\Controllers\RecetaController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [InicioController::class, 'index'])->name('inicio.index');
 
 // Route::get('/recetas', RecetaController::class);
 
@@ -34,8 +35,14 @@ Route::get('/', function () {
 // Route::put('/recetas/{receta}', [RecetaController::class, 'update'])->name('recetas.update');
 // Route::delete('/recetas/{receta}', [RecetaController::class, 'destroy'])->name('recetas.destroy');
 
+// Buscador de recetas
+Route::get('/buscar/', [RecetaController::class, 'search'])->name('buscar.show');
+
 // Manera simplificada
 Route::resource('recetas', RecetaController::class);
+
+// Para categorias
+Route::get('/categoria/{categoriaReceta}', [CategoriasController::class, 'show'])->name('categorias.show');
 
 // Rutas para perfiles
 Route::get('/perfiles/{perfil}', [PerfilController::class, 'show'])->name('perfiles.show');

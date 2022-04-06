@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm barra">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -56,8 +56,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Str::title(Auth::user()->name)  }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -90,6 +90,32 @@
                 </div>
             </div>
         </nav>
+
+        <nav class="navbar navbar-expand-md navbar-light categorias-bg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#catagorias" aria-controls="categorias">
+                    <span class="navbar-toggler-icon"></span>
+                    Categorías
+                </button>
+
+                <div class="collapse navbar-collapse" id="categorias">
+                    <ul class="navbar-nav w-100 d-flex justify-content-between">
+                        @foreach($categorias as $categoria)
+                            <li class="nav-item">
+                                <a href="{{route('categorias.show', ['categoriaReceta' => $categoria->id])}}" class="nav-link">
+                                    {{$categoria->nombre}}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+
+        @yield('hero')
+
 
         <div class="container">
             <div class="row">
